@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Aristia",
+    "command": "~/osu/hitcircles/Aristia.sh",
+    "icon": "Aristia"
+  },
+  {
+    "name": "Ayano",
+    "command": "~/osu/hitcircles/Ayano.sh",
+    "icon": "Ayano"
+  },
+  {
+    "name": "Azerite",
+    "command": "~/osu/hitcircles/Azerite.sh",
+    "icon": "Azerite"
+  },
+  {
+    "name": "Bees",
+    "command": "~/osu/hitcircles/Bees.sh",
+    "icon": "Bees"
+  },
+  {
+    "name": "Mathi",
+    "command": "~/osu/hitcircles/Mathi.sh",
+    "icon": "Mathi"
+  },
+  {
+    "name": "Rafis",
+    "command": "~/osu/hitcircles/Rafis.sh",
+    "icon": "Rafis"
+  },
+  {
+    "name": "RyuK",
+    "command": "~/osu/hitcircles/RyuK.sh",
+    "icon": "RyuK"
+  },
+  {
+    "name": "Vaxei",
+    "command": "~/osu/hitcircles/Vaxei.sh",
+    "icon": "Vaxei"
+  },
+  {
+    "name": "WhiteCat",
+    "command": "~/osu/hitcircles/WhiteCat.sh",
+    "icon": "WhiteCat"
+  }
+]
