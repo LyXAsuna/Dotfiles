@@ -30,7 +30,7 @@ font-0 = Iosevka:size=13;2
 
 modules-left = i3 sep 
 modules-center = spotify-prev spotify spotify-next spotify-play-pause
-modules-right = info-cava theme skin sep memory cpu system-nvidia-smi sep date sep blur-toggle 
+modules-right = info-cava theme sep memory cpu system-nvidia-smi sep date sep blur-toggle 
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -38,12 +38,6 @@ cursor-scroll = ns-resize
 [module/xwindow]
 type = internal/xwindow
 label = %title:1:100%
-
-[module/skin]
-type = custom/script
-exec = echo ""
-format = <label>
-click-left = exec ~/.scripts/skin
 
 [module/blur-toggle]
 type = custom/ipc
