@@ -12,3 +12,12 @@ Some packages you'll need:
 - pulseaudio
 - nerd-fonts-hack
 - picom
+
+**Installation:**
+get git if u dont have it
+
+```
+git clone https://github.com/LyXAsuna/Dotfiles
+cd Dotfiles
+./install.sh``
+
