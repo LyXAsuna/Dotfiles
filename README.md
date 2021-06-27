@@ -19,5 +19,6 @@ get git if u dont have it
 ```
 git clone https://github.com/LyXAsuna/Dotfiles
 cd Dotfiles
+chmod +x install.sh
 ./install.sh
 
