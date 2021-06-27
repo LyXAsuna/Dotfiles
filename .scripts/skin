@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Cursor
+export BACKGROUND=$(fd | rofi -modi drun                        \
+-file-browser-hide-parent                                       \
+-file-browser-only-files enabled                                \
+-theme /home/loli/.config/polybar/themes/rofi/clean.rasi        \
+-window-thumbnail enabled                                       \
+-show file-browser-extended [ -file-browser-dir ~/osu/cursors/ ] \
+-file-browser-disable-status                                    \
+-file-browser-stdout)
+sudo cp -f $BACKGROUND ~/osu/Skins/done/cursor.png
+
+# Cursortrails
+export BACKGROUND=$(fd | rofi -modi drun                        \
+-file-browser-hide-parent                                       \
+-file-browser-only-files enabled                                \
+-theme /home/loli/.config/polybar/themes/rofi/clean.rasi    	\
+-window-thumbnail enabled                                       \
+-show file-browser-extended [ -file-browser-dir ~/osu/cursortrails/ ] \
+-file-browser-disable-status                                    \
+-file-browser-stdout)
+sudo cp -f $BACKGROUND ~/osu/Skins/done/cursortrail.png
+
+# Hitcircles
+sudo rm -rf ~/osu/Skins/done/skin.ini
+rofi -modi "Select Your Hitcircle":"~/.config/rofi/rofi-json.sh hitcircle.json" -show "Select Your Hitcircle" -theme ~/.config/polybar/themes/rofi/clean.rasi
+
+notify-send "Reload Your Skin!" "Ctrl+Shift+Alt+S"
