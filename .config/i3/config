@@ -1,84 +1,54 @@
-#CUSTOM
 
-#wifi
-#exec --no-startup-id nm-applet
-
-bindsym $mod+F3 exec google-chrome-stable
-bindsym $mod+F2 exec nautilus
-exec sudo rmmod wacom
-
-#bot
-#exec cd ~/bot/ViruBot && bash -c "python virubot.py"
-exec_always dunst
-
-#Gaps control
-bindsym $mod+Control+Prior gaps inner current minus 10
-bindsym $mod+Control+Next gaps inner current plus 10
-
-#VMware autostart
-#exec gksu vmware
-
-#workspace movement
-#bindsym Prior workspace next
-#bindsym Next workspace prev
-
-#Color profiles?
-exec --no-startup-id xiccd
-
-#Custom menu
-bindsym Home exec --no-startup-id rofi -no-config -no-lazy-grab -show drun -theme ~/.config/polybar/themes/rofi/clean.rasi
-
-#sorting
-#exec_always --no-startup-id i3altlayout
-
-#terminal
-bindsym $mod+Shift+z exec "alacritty --command sudo nano ~/.config/i3/config"
-
-#Polybar
-exec_always --no-startup-id ~/.config/polybar/launch.sh
-
-#mouse
-#exec_always --no-startup-id "picom"
-focus_follows_mouse no
-exec_always for id in $(xinput list | grep "pointer" | cut -d '=' -f 2 | cut -f 1); do xinput --set-prop $id 'libinput Accel Profile Enabled' 0, 1; done
-
-#wallpaper
-exec --no-startup-id wal -c 
-exec --no-startup-id "wal -i $BACKGROUND"
-exec bash -c "sleep 1" && cd /home/loli/repos/pywal-discord && ./pywal-discord -t abou
-
-#gtk
-exec --no-startup-id /usr/lib/gsd-xsettings
-
-#flameshot
-bindsym Print exec "flameshot gui"
+# My custom i3 config
 
 set $mod Mod1
-
-#Font
 font pango:Iosevka regular 8
 
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+# Gaps
+gaps inner 40
+gaps top 60
+for_window [class=".*"] border pixel 0
 
 # start a terminal
 bindsym $mod+Return exec alacritty
 
+# Steam + Browser + File browser + Discord
+bindsym $mod+F4 exec discord
+bindsym $mod+F3 exec google-chrome-stable
+bindsym $mod+F2 exec nautilus
+bindsym $mod+F1 exec steam
+
+# Remove unwanted stuff
+exec sudo rmmod wacom
+
+# Exec at startup stuff
+exec_always dunst
+exec_always setxkbmap -option grp:switch,grp:win_space_toggle, us,il # Hebrew for keyboard
+exec_always wal -i /home/loli/Wallpapers/Kizune\ AI.png # Wallpaper + Theme
+exec_always --no-startup-id ~/.config/polybar/launch.sh # Polybar
+
+# Gaps control
+bindsym $mod+Control+Prior gaps inner current minus 10
+bindsym $mod+Control+Next gaps inner current plus 10
+
+# Application menu
+bindsym Home exec --no-startup-id rofi -no-config -no-lazy-grab -show drun -theme ~/.config/polybar/themes/rofi/clean.rasi
+
+# Edit i3 config
+bindsym $mod+Shift+z exec "alacritty --command sudo nano ~/.config/i3/config"
+
+# Mouse stuff
+focus_follows_mouse no
+exec_always for id in $(xinput list | grep "pointer" | cut -d '=' -f 2 | cut -f 1); do xinput --set-prop $id 'libinput Accel Profile Enabled' 0, 1; done
+floating_modifier $mod
+
+# Take a screenshot
+bindsym Print exec "flameshot gui"
+
 # kill focused window
 bindsym $mod+Shift+q kill
 bindsym End kill
-                
+
 bindsym $mod+j focus left
 bindsym $mod+k focus down
 bindsym $mod+l focus up
@@ -137,11 +107,6 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-gaps inner 40
-#gaps horizontal 50
-gaps top 60
-for_window [class=".*"] border pixel 0
-
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -166,14 +131,16 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
+# Restart i3
+bindsym $mod+shift+c restart
+
+# Reload i3
+bindsym $mod+Shift+r reload
+
+# Exit i3
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-# resize window (you can also use the mouse for that)
+# Resize window (You can also use the mouse for that)
 mode "resize" {
         bindsym j resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
@@ -190,25 +157,3 @@ mode "resize" {
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
-
-bindsym $mod+r mode "resize"
-
-set $bg-color	         #3399fffc
-set $border-color        #3333ffaa
-set $indicator-color	 #20d9befc
-set $inactive-bg-color   #ffffff00
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
-set $ws-focused-bg	 #000000
-
-# window colors
-#                       border              background         text                 indicator
-client.focused          $border-color       $bg-color          $text-color          $indicator-color
-client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color $inactive-bg-color
-client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color $inactive-bg-color
-client.urgent	$urgent-bg-color    $urgent-bg-color   $text-color    $urgent-bg-color
-
-#exec papermc start
-exec_always setxkbmap -option grp:switch,grp:win_space_toggle, us,il
-exec_always wal -i /home/loli/Wallpapers/Kizune\ AI.png
