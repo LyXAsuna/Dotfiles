@@ -211,4 +211,4 @@ client.urgent	$urgent-bg-color    $urgent-bg-color   $text-color    $urgent-bg-c
 
 #exec papermc start
 exec_always setxkbmap -option grp:switch,grp:win_space_toggle, us,il
-exec_always wal -i /home/loli/wallpapers/faq.png
+exec_always wal -i /home/loli/Wallpapers/Kizune\ AI.png
