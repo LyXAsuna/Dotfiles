@@ -17,7 +17,7 @@ Some packages you'll need:
 get git if u dont have it
 
 ```
-git clone https://github.com/LyXAsuna/Dotfiles
+git clone https://github.com/LyXAsuna/Dotfiles```
 cd Dotfiles
 ./install.sh
 
