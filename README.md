@@ -11,7 +11,6 @@ Some packages you'll need:
 - flameshot
 - pulseaudio
 - nerd-fonts-hack
-- picom
 
 **Installation:**
 get git if u dont have it
