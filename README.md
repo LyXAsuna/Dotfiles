@@ -14,6 +14,7 @@ Some packages you'll need:
 - mpd
 - cava
 - nautilus (preference)
+
 *Change anything thats preference in the i3 config*
 
 **Installation:**
