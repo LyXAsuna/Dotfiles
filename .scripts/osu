@@ -1,0 +1,8 @@
+#!/bin/sh
+export WINEPREFIX="$HOME/.loli_osu"
+export STAGING_AUDIO_PERIOD=2500
+export STAGING_AUDIO_DURATION=2500
+export PATH=/opt/wine-osu/bin:$PATH
+#export vblank_mode=0
+cd ~/osu
+wine winediscordipcbridge.exe | wine osu!.exe "$@"
