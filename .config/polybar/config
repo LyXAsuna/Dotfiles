@@ -1,0 +1,263 @@
+[colors]
+background = ${xrdb:color0:#222}
+background-alt = ${xrdb:color3:#222}
+foreground = ${xrdb:color7:#222}
+foreground-alt = ${xrdb:color2:#555}
+highlight = ${xrdb:color2:#f00}
+urgent = #f00
+
+[bar/main]
+width = 100%:-28
+offset-x = 15
+offset-y = 12
+enable-ipc = true
+
+height = 48
+radius = 5
+
+override-redirect = true
+wm-restack = i3
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+padding-left = 1
+padding-right = 2
+module-margin-left = 2
+module-margin-right = 1
+font-1 = Hack Nerd Font:style=Regular:pixelsize=15:antialias=true;3
+font-0 = Iosevka:size=13;2
+
+modules-left = i3 sep 
+modules-center = spotify-prev spotify spotify-next spotify-play-pause
+modules-right = info-cava theme sep memory cpu system-nvidia-smi sep date sep blur-toggle 
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:1:100%
+
+[module/blur-toggle]
+type = custom/ipc
+hook-0 = echo 
+hook-1 = echo 
+click-left = /home/loli/.scripts/blurtoggle
+initial = 1
+format-foreground = ${colors.color4}
+
+[module/openweathermap-detailed]
+type = custom/script
+exec = ~/.config/polybar/modules/openweathermap-detailed.sh
+interval = 600
+label-font = 3
+
+[module/filesystem]
+type = internal/fs
+interval = 25111
+mount-0 = /
+label-mounted = %{}%mountpoint%%{F-}: %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground}
+
+[module/corona]
+type = custom/script
+interval = 3600
+format = <label>
+exec = python ~/.config/polybar/modules/coronaWidget.py israel
+
+[module/i3]
+type = internal/i3
+pin-workspaces = false
+strip-wsnumbers = true
+index-sort = true
+enable-click = true
+enable-scroll = false
+wrapping-scroll = false
+reverse-scroll = false
+fuzzy-match = true
+
+conent-font=4
+ws-icon-default = "  "
+ws-icon-0 = "0;0  "
+ws-icon-1 = "1;%{T2}%{T-}  "
+ws-icon-2 = "2;%{T2}ﭮ%{T-}  "
+ws-icon-3 = "3;%{T2}%{T-}  "
+ws-icon-4 = "4;%{T2}%{T-}  "
+ws-icon-5 = "5;%{T1}%{T-}  "
+ws-icon-6 = "6;%{T1}%{T-}  "
+ws-icon-7 = "7;%{T1}%{T-}  "
+ws-icon-8 = "8;%{T1}%{T-}  "
+ws-icon-9 = "9;%{T1}%{T-}  "
+
+format = <label-state>
+
+label-focused = %icon%
+label-focused-foreground = ${colors.foreground-alt}
+label-focused-padding = 1
+
+label-unfocused = ${self.label-focused}
+label-unfocused-foreground = ${colors.foreground}
+label-unfocused-padding = ${self.label-focused-padding}
+
+label-visible = ${self.label-focused}
+label-visible-foreground = #0a7383
+label-visible-padding = ${self.label-focused-padding}
+
+label-urgent = ${self.label-focused}
+label-urgent-foreground = ${colors.alert}
+label-urgent-padding = ${self.label-focused-padding}
+
+
+[module/spotify]
+type = custom/script
+tail = true
+; prefix symbol is shown before the text
+format-prefix = ""
+format = <label>
+exec = ~/.config/polybar/modules/scroll_spotify_status.sh
+
+[module/info-cava]
+type = custom/script
+exec = ~/.config/polybar/modules/info-cava.py -f 24 -b 12 -e fffdfc,fffafe,ffeafa,ffc3d2 -c average
+tail = true
+
+[module/spotify-prev]
+type = custom/script
+exec = echo ""
+format = <label>
+click-left = playerctl previous spotify
+
+[module/spotify-play-pause]
+type = custom/ipc
+hook-0 = echo " "
+hook-1 = echo " "
+initial = 1
+click-left = playerctl --player=spotify play-pause
+
+[module/spotify-next]
+type = custom/script
+exec = echo ""
+format = <label>
+click-left = playerctl next spotify
+
+#[module/backlight]
+#type = internal/backlight
+#card = radeon_bl0
+#format = <label>
+#label = "  %percentage%%"
+#label-foreground = ${colors.tertiary}
+
+[module/wlan]
+type = internal/network
+interface = wlp1s0f0u3 
+interval = 3.0
+
+format-connected = <label-connected>
+format-connected-underline = #9f78e1
+label-connected = "直"
+label-connected-foreground = ${colors.foreground-alt}
+
+format-disconnected = <label-disconnected>
+format-disconnected-underline = ${self.format-connected-underline}
+label-disconnected = 睊
+label-disconnected-foreground = ${colors.foreground-alt}
+
+ramp-signal-0 = a
+ramp-signal-1 = b
+ramp-signal-2 = c
+ramp-signal-3 = d
+ramp-signal-4 = e
+
+[module/date]
+type = internal/date
+interval = 1
+date = "%b %d, %Y  "
+date-alt = "%b %d, %Y  "
+time = "%I:%M"
+time-alt = "%I:%M:%S"
+format-prefix-foreground = ${colors.foreground}
+format-underline = #0a6cf5
+label = %date%%time%
+
+[module/audio]
+type = internal/pulseaudio
+format-volume = <ramp-volume>
+label-volume-foreground = ${colors.foreground-alt}
+ramp-volume-foreground = ${colors.foreground-alt}
+label-volume = 
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+label-muted = ﱝ
+label-muted-foreground = ${colors.secondary}
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = ADP0
+full-at = 98
+format-charging = <ramp-capacity>
+format-discharging = <ramp-capacity>
+label-full =  
+label-full-foreground = ${colors.fourth}
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
+ramp-capacity-9 = 
+ramp-capacity-foreground = ${colors.fourth}
+label-discharging =
+label-discharging-foreground = ${colors.fourth}
+label-charging-foreground = ${colors.fourth}
+
+[module/theme]
+type = custom/text
+format-spacing = 1
+content = 
+content-foreground = ${colors.foreground-alt}
+click-left = bash ~/.config/polybar/modules/theme.sh
+
+[module/cpu]
+type = internal/cpu
+interval = 1
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format = <label>
+format-foreground = ${colors.foreground}
+label = %percentage%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format = <label>
+format-foreground = ${colors.foreground}
+label = "%mb_used%"
+
+[module/browsermediacontrol]
+type = custom/script  
+exec = /home/loli/.config/polybar/modules/browsermediacontrol
+;scroll-up = /path/to/files/browsermediacontrol --volume 1
+;scroll-down = /path/to/files/browsermediacontrol --volume -1 
+interval = 0.1
+
+[module/system-nvidia-smi]
+type = custom/script
+format-prefix-foreground = ${colors.foreground-alt}
+format-foreground = ${colors.foreground}
+format-prefix = " "
+exec = ~/.config/polybar/modules/system-nvidia-smi.sh
+interval = 1
+
+[module/sep]
+type = custom/text
+format = <label>
+content = "|"
