@@ -4,6 +4,7 @@
 Some packages you'll need:
 
 - rofi
+- file-browser-extended
 - i3
 - kitty (preference)
 - pywal
