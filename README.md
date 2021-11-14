@@ -1,3 +1,6 @@
+![](https://cdn.discordapp.com/attachments/909563395508944896/909574462175854592/unknown.png)
+
+
 Some packages you'll need:
 
 - rofi
